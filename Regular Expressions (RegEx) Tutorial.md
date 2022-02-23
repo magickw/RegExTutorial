@@ -44,11 +44,15 @@ The characters `^` and `$` are both considered to be anchors. An anchor symboliz
 
 ### Quantifiers
 
-Quantifiers set the limits of the string that your regex matches. Let's have a look at the subexpression `.([a-z\.]{2,6})` as shown in the Summary section. The `{2,6}` part is a quantifier which limits the minimum and maximum number of characters that your regex is looking for. It means this part of the string must be between 2 and 6 characters in length. By default, a quantifier tells the engine to match as many occurrences of particular patterns as possible. This behavior is called greedy. The quantifiers include:
+Quantifiers set the limits of the string that your regex matches. Let's have a look at the subexpression `.([a-z\.]{2,6})` as shown in the Summary section. The `{2,6}` part is a quantifier which limits the minimum and maximum number of characters that your regex is looking for. It means this part of the string must be between 2 and 6 characters in length. By default, a quantifier tells the engine to match as many occurrences of particular patterns as possible. This behavior is called greedy, especially for `*` and `+`. Non-greedy or minimum matching is possible only by appending a `?` after them. For example:
+
+    colou?r ---> matches either color or colour, and '?' means that the preceding character can only appear at most once (0 or 1 time).
+
+The quantifiers include:
 
     +,*,? and {n}
     
-Note: `{}`—Curly brackets can provide three different ways to set limits for a match: `{n}`, `{n,}` and `{n,m}`. There must be no space after the comma in {n,m}, otherwise it will not match correctly.
+Note: `{}`—Curly brackets can provide three different ways to set limits for a match: `{n}`, `{n,}` and `{n,m}`. There must be no space after the comma in `{n,m}`, otherwise it will not match correctly.
 
 ### Grouping Constructs
 
@@ -58,6 +62,10 @@ As regular expressions grow more complicated, it's important to use grouping con
 
 A bracket expression represents a list of characters enclosed by `[]`. Let's take the first bracket expression, `[a-z0-9_\.-]`, in our case as an example. Instead of listing all characters, we use a range expression inside the bracket. `a-z` defines a range of characters specifically lowercase letters from "a" through to "z", and `0-9` defines a range of numbers from "0" through to "9". Likewise, if inside the brackets, there is `a-d`, it's the same as `[abcd]`. That would include "a", "b", "c" or "d".
 
+It was mentioned earlier that `^` signifies the beginning of a string, but it has another usage. When used within a pair of square brackets, `^` means `not` or `excluding` and is often used to remove a character. In the following example, it requires that the first character cannot be a number:
+
+    ^[^0-9][0-9]$
+
 ### Character Classes
 
 A character class defines a set of characters, any of which can appear in the input string for a successful match. Consider a practical task - we have a phone number such as `+1(911)-123-4567` and we need to convert it to a plain number: `19111234567`. To do this, we can find and delete everything that is not a number. Character classes can help with this. The most common character classes are as follows:
@@ -66,11 +74,11 @@ A character class defines a set of characters, any of which can appear in the in
     \D  -----> Non-digit characters.
     \s ("s" comes from "space") ----->Space symbols: include spaces, tabs \t, newline \n and other rare characters such as \v, \f and \r.
     \S - except \s.
-    \w ("w" comes from "word") ----->"Latin letters or numbers or underscore '_'. Non-Latin letters (such as Cyrillic or Hindi) do not belong to \w.
+    \w ("w" comes from "word") ----->Latin letters or numbers or underscore '_'. Non-Latin letters (such as Cyrillic or Hindi) do not belong to \w.
     \W -----> except \w.
     . -----> any character with the flag 's', otherwise any character except a newline \n.
 
-Let's explore the "Number" class. Without the flag `g`, the regular expression looks only for the first match, which is the first digit \d. Let's add the flag g to find all numbers:
+Let's explore the "digit" class. Without the flag `g`, the regular expression `\d` looks only for the first match, which is the first number . Let's add the flag `g` to find all numbers:
 
     let str = "+1(911)-123-4567";
     let regexp = /\d/g;
@@ -95,9 +103,9 @@ Also known as modifiers, the flags in regular expressions are used to specify ad
 
 In JavaScript, there are 6 optional flags, but the most common are below:
 
-    g — Global search. Look back the phone number example above, I used 'g' to find all matches
-    i — Case-insensitive search, see the example below
-    m — Multi-line search, see the example below
+    g — Global search. Looking back the phone number example above, I used 'g' to find all matches
+    i — Case-insensitive search, see Example 1 below
+    m — Multi-line search, see Example 2 below
 
 Example 1. Find `LOVE` in a string:
 
@@ -113,9 +121,11 @@ Example 2. Find `door` in a string:
 
 ### Character Escapes
 
-The backslash (\) in a regex escapes a character that otherwise would be interpreted literally. To use a special character as a regular character, just precede it with a backslash. For example, we need to find a dot `.`. A dot in a regular expression refers to "any character except a newline", so if we want to actually express a query for a "dot", we can add a backslash before the dot.
+The backslash (`\`) in a regex escapes a character that otherwise would be interpreted literally. To use a special character as a regular character, just precede it with a backslash. For example, we need to find a dot `.`. A dot in a regular expression refers to "any character except a newline", so if we want to actually express a query for a "dot", we can add a backslash before the dot.
 
     alert( "Chapter 5.1".match(/\d\.\d/) ); // 5.1
+
+Likewise, in order to match special characters such as *, +, [, ] and etc., just precede them with `\`, e.g. `\*`, `\+` and etc.
 
 ## Author
 

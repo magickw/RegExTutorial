@@ -3,7 +3,7 @@
 ![badge](https://img.shields.io/badge/license-MIT-blue.svg)
 
 ## Description
-This is a brief overview of regular expressions written by using Github's gist.
+This is a brief overview of regular expressions written by using Github's gist. Click <a href="https://gist.github.com/magickw/0cbbeeeebcf31f13273b80993e2becf2" target=”_blank”>here</a> for the gist post.
 
 ## Table of Contents
 - [Description](#description)
