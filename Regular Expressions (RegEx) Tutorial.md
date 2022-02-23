@@ -14,14 +14,19 @@ In order to better understand how does this regular expression work, I will brea
 
 ## Table of Contents
 
-- [Anchors](#anchors)
-- [Quantifiers](#quantifiers)
-- [Grouping Constructs](#grouping-constructs)
-- [Bracket Expressions](#bracket-expressions)
-- [Character Classes](#character-classes)
-- [The OR Operator](#the-or-operator)
-- [Flags](#flags)
-- [Character Escapes](#character-escapes)
+- [Regular Expressions (RegEx) Tutorial](#regular-expressions-regex-tutorial)
+  - [Summary](#summary)
+  - [Table of Contents](#table-of-contents)
+  - [Regex Components](#regex-components)
+    - [Anchors](#anchors)
+    - [Quantifiers](#quantifiers)
+    - [Grouping Constructs](#grouping-constructs)
+    - [Bracket Expressions](#bracket-expressions)
+    - [Character Classes](#character-classes)
+    - [The OR Operator](#the-or-operator)
+    - [Flags](#flags)
+    - [Character Escapes](#character-escapes)
+  - [Author](#author)
 
 ## Regex Components
 
@@ -58,14 +63,14 @@ A bracket expression represents a list of characters enclosed by `[]`. Let's tak
 A character class defines a set of characters, any of which can appear in the input string for a successful match. Consider a practical task - we have a phone number such as `+1(911)-123-4567` and we need to convert it to a plain number: `19111234567`. To do this, we can find and delete everything that is not a number. Character classes can help with this. The most common character classes are as follows:
 
     \d ("d" comes from "digit") -----> Numbers: Characters from 0 to 9.
-    \D  -----> Non-digit.
+    \D  -----> Non-digit characters.
     \s ("s" comes from "space") ----->Space symbols: include spaces, tabs \t, newline \n and other rare characters such as \v, \f and \r.
     \S - except \s.
     \w ("w" comes from "word") ----->"Latin letters or numbers or underscore '_'. Non-Latin letters (such as Cyrillic or Hindi) do not belong to \w.
     \W -----> except \w.
-    . -----> any character with the 's' flag, otherwise any character except a newline \n.
+    . -----> any character with the flag 's', otherwise any character except a newline \n.
 
-Let's explore the "Number" class. Without the flag g, the regular expression looks only for the first match, which is the first digit \d. Let's add the flag g to find all numbers:
+Let's explore the "Number" class. Without the flag `g`, the regular expression looks only for the first match, which is the first digit \d. Let's add the flag g to find all numbers:
 
     let str = "+1(911)-123-4567";
     let regexp = /\d/g;
@@ -88,11 +93,11 @@ Also known as modifiers, the flags in regular expressions are used to specify ad
 
     /pattern/flags
 
-In JavaScript, there are 6 flags, but the most common are below:
+In JavaScript, there are 6 optional flags, but the most common are below:
 
     g — Global search. Look back the phone number example above, I used 'g' to find all matches
     i — Case-insensitive search, see the example below
-    m — Multi-line search
+    m — Multi-line search, see the example below
 
 Example 1. Find `LOVE` in a string:
 
@@ -108,10 +113,10 @@ Example 2. Find `door` in a string:
 
 ### Character Escapes
 
-The backslash (\) in a regex escapes a character that otherwise would be interpreted literally. To use a special character as a regular character, just precede it with a backslash. For example, we need to find a dot '.'. A dot in a regular expression refers to "any character except a newline", so if we want to actually express a query for "a dot", we can add a backslash before the dot.
+The backslash (\) in a regex escapes a character that otherwise would be interpreted literally. To use a special character as a regular character, just precede it with a backslash. For example, we need to find a dot `.`. A dot in a regular expression refers to "any character except a newline", so if we want to actually express a query for a "dot", we can add a backslash before the dot.
 
     alert( "Chapter 5.1".match(/\d\.\d/) ); // 5.1
 
 ## Author
 
-This Regular Expressions (RegEx) Tutorial is created by [Baofeng Guo](https://github.com/magickw).
+This Regular Expressions (RegEx) Tutorial is created by [Baofeng Guo](https://github.com/magickw). Click [here](https://github.com/magickw/RegExTutorial) for repo.
