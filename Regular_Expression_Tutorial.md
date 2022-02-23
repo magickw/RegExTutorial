@@ -1,1 +1,0 @@
-<script src="https://gist.github.com/magickw/0cbbeeeebcf31f13273b80993e2becf2.js"></script>
