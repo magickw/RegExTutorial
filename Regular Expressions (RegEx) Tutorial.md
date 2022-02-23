@@ -35,7 +35,7 @@ The characters `^` and `$` are both considered to be anchors. An anchor symboliz
 
 `\b` and `\B` are also considered as position anchors. `\b` matches the boundary of a word, and `\B` matches the non-word-boundary. For example:
 
-    \dog\b --> matches the word "cat" in input string "It is a dog.", but does not match input "It is a dogie."
+    \dog\b --> matches the word "dog" in the input string "It is a dog.", but does not match the input "It is a dogie."
 
 ### Quantifiers
 
