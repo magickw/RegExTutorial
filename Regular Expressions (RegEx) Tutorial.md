@@ -8,7 +8,7 @@ In many programming languages, programmers use regular expressions to search thr
 
     /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
 
-It looks daunting. Actually, it can be broken down into a series of letters, digits, dots, underscores, `%` signs and hyphens, followed by an `@` sign, followed by another series of letters, digits and hyphens, finally followed by a single dot and two or more letters. With that being said, this pattern describes an email address.
+It looks daunting. Actually, it can be broken down into a series of letters, digits, dots, underscores, and hyphens `/^([a-z0-9_\.-]+)`, followed by an `@` sign, followed by another series of letters, digits and hyphens `([\da-z\.-]+)`, finally followed by a single dot and two or more letters `\.([a-z\.]{2,6})$/`. With that being said, this pattern describes an email address.
 
 In order to better understand how does this regular expression work, I will break it down in details below.
 
@@ -78,7 +78,7 @@ A character class defines a set of characters, any of which can appear in the in
     \W -----> except \w.
     . -----> any character with the flag 's', otherwise any character except a newline \n.
 
-Let's explore the "digit" class. Without the flag `g`, the regular expression `\d` looks only for the first match, which is the first number . Let's add the flag `g` to find all numbers:
+Let's explore the "digit" class. Without a flag `g`, the regular expression `\d` looks only for the first match, which is the first number. Let's add the flag `g` to find all numbers:
 
     let str = "+1(911)-123-4567";
     let regexp = /\d/g;
@@ -121,7 +121,7 @@ Example 2. Find `door` in a string:
 
 ### Character Escapes
 
-The backslash (`\`) in a regex escapes a character that otherwise would be interpreted literally. To use a special character as a regular character, just precede it with a backslash. For example, we need to find a dot `.`. A dot in a regular expression refers to "any character except a newline", so if we want to actually express a query for a "dot", we can add a backslash before the dot.
+The backslash (`\`) in a regex escapes a character that otherwise would be interpreted literally. To use a special character as a regular character, just precede it with a backslash. For example, we need to find a dot `.`. A dot in a regular expression refers to "any character except a newline", so if we want to actually express a query for a "dot", we can precede the dot with a backslash.
 
     alert( "Chapter 5.1".match(/\d\.\d/) ); // 5.1
 
