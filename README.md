@@ -1,4 +1,4 @@
-<h1 align="center">Regular Expressions (RegEx) Tutorial</h1>
+<h1 align="center">Regular Expressions (RegEx) for Email Address Validation</h1>
   
 ![badge](https://img.shields.io/badge/license-MIT-blue.svg)
 
